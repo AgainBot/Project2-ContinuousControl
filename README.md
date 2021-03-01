@@ -130,6 +130,6 @@ python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
 ### Result
 
-The model solved the problem with around 500 episodes. 
+The trained agent is able to solve the problem in slightly more than 100 episodes.
 
 ![dqn-scores](results/ddpg_scores.png)
