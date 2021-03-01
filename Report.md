@@ -75,6 +75,7 @@ Input nodes (33) -> Fully Connected Layer (400 nodes, Relu activation) -> Batch 
 #### The Result
 
 The trained agent is able to solve the problem in around 500 episodes.
+
 ![DDPG Scores](results/ddpg_scores.png)
 
 ## Future Plans
