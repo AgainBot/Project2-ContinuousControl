@@ -110,18 +110,20 @@ python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
 - To tweak the models, you can either go to the `ddpg_agent.py` or the `model.py` file.
     -  In `ddpg_agent.py`, you can tune the following hyperparamters: 
-        - BUFFER_SIZE = int(1e6)  # replay buffer size
-        - BATCH_SIZE = 128        # minibatch size
-        - GAMMA = 0.99            # discount factor
-        - TAU = 1e-3              # for soft update of target parameters
-        - LR_ACTOR = 1e-3         # learning rate of the actor 
-        - LR_CRITIC = 1e-3        # learning rate of the critic
-        - WEIGHT_DECAY = 0        # L2 weight decay
-        - LEARN_EVERY = 20        # learning timestep interval
-        - LEARN_NUM = 10          # number of learning passes
-        - GRAD_CLIPPING = 1.0     # gradient clipping
-        - EPSILON = 1.0           # initial epsilon of the random noise
-        - EPSILON_DECAY = 1e-6    # decay of the random noise
+	- buffer_size = int(1e6)  # replay buffer size
+	- batch_size = 128        # minibatch size
+	- gamma = 0.99            # discount factor
+	- tau = 1e-3              # for soft update of target parameters
+	- lr_actor = 1e-3         # learning rate of the actor 
+	- lr_critic = 1e-3        # learning rate of the critic
+	- weight_decay = 0        # L2 weight decayf the critic
+	- learn_every = 20        # learning timestep interval
+	- learn_num = 10          # number of learning passes
+	- grad_clipping = 1.0     # gradient clipping
+	- actor_fc1_units = 400   # number of units for the layer 1 in the actor model
+	- actor_fc2_units = 300   # number of units for the layer 2 in the actor model
+	- critic_fcs1_units = 400 # number of units for the layer 1 in the critic model
+	- critic_fc2_units = 300  # number of units for the layer 2 in the critic model
     - In `model.py`, you can modify the NN structure by editing the `Actor` and `Critic` classes.
     
 - To watch the trained smart agent, load the weights from `actor.pth` and `critic.pth` and run 
