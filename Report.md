@@ -45,7 +45,7 @@ The implementation mainly lies in the following three files
 - Batch normalization improved the agent's performance a bit although it was not used the original paper.
 - I added one additional hidden layer to the **Actor** provided in lessons. I didn't include more layers as the problem space is not that complex.
 - Learn 10 times every 20 timesteps, as suggested by the instruction.
-- Added decay to the OU noise so we can achieve better performance when we are more confident about our policy. 
+- Corrected the OU noise implementation so we don't need to decay it. 
 - Set learning rate to 1e-3 to allow the agent learn fast enough
 
 #### DDPG parameters
@@ -53,18 +53,20 @@ The implementation mainly lies in the following three files
 The final version of my DDPG agent uses the following parameters values (These parameters are passed in the main training function `ddpg(...)` defined and called in the notebook.)
 
 ```
-BUFFER_SIZE = int(1e6)  # replay buffer size
-BATCH_SIZE = 128        # minibatch size
-GAMMA = 0.99            # discount factor
-TAU = 1e-3              # for soft update of target parameters
-LR_ACTOR = 1e-3         # learning rate of the actor 
-LR_CRITIC = 1e-3        # learning rate of the critic
-WEIGHT_DECAY = 0        # L2 weight decayf the critic
-LEARN_EVERY = 20        # learning timestep interval
-LEARN_NUM = 10          # number of learning passes
-GRAD_CLIPPING = 1.0     # gradient clipping
-EPSILON = 1.0           # initial epsilon of the random noise
-EPSILON_DECAY = 1e-6    # decay of the random noise
+buffer_size = int(1e6)  # replay buffer size
+batch_size = 128        # minibatch size
+gamma = 0.99            # discount factor
+tau = 1e-3              # for soft update of target parameters
+lr_actor = 1e-3         # learning rate of the actor 
+lr_critic = 1e-3        # learning rate of the critic
+weight_decay = 0        # L2 weight decayf the critic
+learn_every = 20        # learning timestep interval
+learn_num = 10          # number of learning passes
+grad_clipping = 1.0     # gradient clipping
+actor_fc1_units = 400   # number of units for the layer 1 in the actor model
+actor_fc2_units = 300   # number of units for the layer 2 in the actor model
+critic_fcs1_units = 400 # number of units for the layer 1 in the critic model
+critic_fc2_units = 300  # number of units for the layer 2 in the critic model
 ```
 
 **Actor** NN has the following structure :
@@ -82,7 +84,7 @@ Input nodes (33) -> Fully Connected Layer (400 nodes, Relu activation) -> Batch 
             
 #### The Result
 
-The trained agent is able to solve the problem in around 500 episodes.
+The trained agent is able to solve the problem in slightly more than 100 episodes.
 
 ![DDPG Scores](results/ddpg_scores.png)
 
